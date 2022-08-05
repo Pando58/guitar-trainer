@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { crossfade } from "svelte/transition";
-  import { quintOut } from "svelte/easing";
+  import { crossfade, type CrossfadeParams } from "svelte/transition";
+  import { cubicOut } from "svelte/easing";
   import { flip } from "svelte/animate";
   import svg_timer from "./assets/timer.svg";
   import Button from "./components/Button.svelte";
@@ -17,13 +17,23 @@
   
   $: timerFaded = !timerActive;
 
-  function pullNote() {
-    noteGenerator.pullNote();
-    counter++;
+  $: transitionDuration = {
+    duration: Math.min(400, (timerValue * 1000) - 25)
   }
 
-  function getTransitionDuration() {
-    return Math.min(400, (timerValue * 1000) - 25);
+  $: counterLimit = displayAmount + 20;
+
+  function pullNote() {
+    noteGenerator.pullNote();
+    if (counter + 1 > counterLimit - 1) {
+      counter = 0;
+    } else {
+      counter++;
+    }
+  }
+
+  function getCounterId(n) {
+    return n - (Math.floor(n / counterLimit) * counterLimit);
   }
   
   $: {
@@ -50,21 +60,21 @@
     displayAmount;
 
     timerActive = false;
+    counter = 0;
   };
 
   const [send, receive] = crossfade({
-    duration: getTransitionDuration,
-    fallback(node, params) {
+    fallback: (node, { key }: CrossfadeParams & {key: any}) => {
 			const style = getComputedStyle(node);
 			const transform = style.transform === 'none' ? '' : style.transform;
-
+      
 			return {
-        duration: getTransitionDuration(),
-				easing: quintOut,
-				css: t => `
-					transform: ${transform} scale(${t});
-					opacity: ${t}
-				`
+        duration: transitionDuration.duration,
+				easing: cubicOut,
+				css: (t, u) => `
+          transform: ${transform} ${key === "in" ? `translateY(${u * 60}px)` : `scale(${t})`};
+          opacity: ${t}
+        `
 			};
 		}
   });
@@ -92,12 +102,12 @@
     </div>
   </div>
   <div class="w-full flex flex-col items-center pt-20 pb-10">
-    {#each $noteGenerator.nextBag as next, i (i + counter)}
+    {#each $noteGenerator.nextBag as next, i (getCounterId(i + counter))}
       <div
         class="{i == 0 ? 'text-6xl text-gray-50' : 'text-4xl text-gray-400'}"
-        in:receive={{key: i + counter}}
-        out:send={{key: i + counter}}
-        animate:flip
+        in:receive={{key: "in"}}
+        out:send={{key: "out"}}
+        animate:flip={{duration: transitionDuration.duration, easing: cubicOut}}
       >
         {intervalNames[next]}
       </div>
