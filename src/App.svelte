@@ -21,9 +21,19 @@
     duration: Math.min(400, (timerValue * 1000) - 25)
   }
 
+  $: counterLimit = displayAmount + 20;
+
   function pullNote() {
     noteGenerator.pullNote();
-    counter++;
+    if (counter + 1 > counterLimit - 1) {
+      counter = 0;
+    } else {
+      counter++;
+    }
+  }
+
+  function getCounterId(n) {
+    return n - (Math.floor(n / counterLimit) * counterLimit);
   }
   
   $: {
@@ -50,6 +60,7 @@
     displayAmount;
 
     timerActive = false;
+    counter = 0;
   };
 
   const [send, receive] = crossfade({
@@ -91,7 +102,7 @@
     </div>
   </div>
   <div class="w-full flex flex-col items-center pt-20 pb-10">
-    {#each $noteGenerator.nextBag as next, i (i + counter)}
+    {#each $noteGenerator.nextBag as next, i (getCounterId(i + counter))}
       <div
         class="{i == 0 ? 'text-6xl text-gray-50' : 'text-4xl text-gray-400'}"
         in:receive={{key: "in"}}
