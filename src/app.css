@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* *, ::before, ::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+:root {
+  @apply text-white bg-gray-900;
+}
+
+body {
+  @apply w-screen h-screen;
+}
+
+#app {
+  @apply w-full h-full;
+}
