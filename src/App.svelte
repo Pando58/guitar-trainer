@@ -18,7 +18,7 @@
   $: timerFaded = !timerActive;
 
   $: transitionDuration = {
-    duration: Math.min(400, (timerValue * 1000) - 25)
+    duration: Math.min(400, ((timerValue || 0.1) * 1000) - 25)
   }
 
   $: counterLimit = displayAmount + 20;
@@ -40,7 +40,7 @@
     if (timerActive) {
       timerInterval = setInterval(() => {
         pullNote();
-      }, timerValue * 1000);
+      }, (timerValue || 0.1) * 1000);
     } else {
       clearInterval(timerInterval);
     }
@@ -60,7 +60,7 @@
     displayAmount;
 
     timerActive = false;
-    counter = 0;
+    noteGenerator.reset();
   };
 
   const [send, receive] = crossfade({
