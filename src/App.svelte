@@ -60,7 +60,7 @@
     displayAmount;
 
     timerActive = false;
-    counter = 0;
+    noteGenerator.reset();
   };
 
   const [send, receive] = crossfade({
