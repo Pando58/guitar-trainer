@@ -40,7 +40,7 @@ function reset() {
 function getStoreObject() {
 	return {
 		displayAmount,
-		selectedScale: Object.keys(scales).find(key => scales[key] == selectedScale),
+		selectedScale: Object.keys(scales).find(key => scales[key] === selectedScale),
 		nextBag
 	};
 }
