@@ -18,7 +18,7 @@
   let timerActive = false;
   let counter = 0;
   let timerInterval: NodeJS.Timer = null;
-  let inputs = {
+  let inputs: {[key: string]: number} = {
     displayAmount: $displayAmount,
     nextNoteTimer: $nextNoteTimer
   }
