@@ -3,17 +3,17 @@
   import { cubicOut } from "svelte/easing";
   import { flip } from "svelte/animate";
   import { get } from "svelte/store";
-  import svg_timer from "./assets/timer.svg";
-  import Button from "./components/Button.svelte";
-  import Select from "./components/Select.svelte";
-  import { noteGenerator } from "./stores/noteGenerator";
+  import svg_timer from "@/assets/timer.svg";
+  import Button from "@/components/Button.svelte";
+  import Select from "@/components/Select.svelte";
+  import { noteGenerator } from "@/stores/noteGenerator";
   import {
     stores,
     selectedScale,
     displayAmount,
     nextNoteTimer
-  } from "./stores/appSettings";
-  import { intervalNames, scaleNames } from "./data/scales";
+  } from "@/stores/appSettings";
+  import { intervalNames, scaleNames } from "@/data/scales";
 
   let timerActive = false;
   let counter = 0;
