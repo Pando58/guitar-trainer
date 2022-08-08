@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import { scales } from "../data/scales";
+import { scales } from "@/data/scales";
 
 
 let displayAmount = 5;
