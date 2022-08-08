@@ -7,13 +7,13 @@
   import Button from "./components/Button.svelte";
   import Select from "./components/Select.svelte";
   import { noteGenerator } from "./stores/noteGenerator";
-  import { intervalNames, scaleNames } from "./data/scales";
   import {
     stores,
     selectedScale,
     displayAmount,
     nextNoteTimer
   } from "./stores/appSettings";
+  import { intervalNames, scaleNames } from "./data/scales";
 
   let timerActive = false;
   let counter = 0;
