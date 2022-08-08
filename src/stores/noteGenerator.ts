@@ -5,8 +5,8 @@ import { scales } from "../data/scales";
 let displayAmount = 5;
 let selectedScale = scales.major;
 
-const bag = [];
-const nextBag = [];
+const bag: number[] = [];
+const nextBag: number[] = [];
 
 fillNextNotes();
 
