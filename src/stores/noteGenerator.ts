@@ -1,81 +1,61 @@
-import { writable } from "svelte/store";
-import { scales } from "@/data/scales";
+import { writable, derived, get } from "svelte/store";
+import { scaleNames, scales } from "@/data/scales";
 
+export const noteGenerator = (() => {
+	let displayAmount = 5;
+	let selectedScale = scales.major;
 
-let displayAmount = 5;
-let selectedScale = scales.major;
-
-const bag: number[] = [];
-const nextBag: number[] = [];
-
-fillNextNotes();
-
-
-function fillNextNotes() {
-	while (nextBag.length < displayAmount) {
-		nextBag.push(pullFromBag());
-	}
-}
-
-function pullFromBag() {
-	if (bag.length <= 1) {
-		bag.push(...selectedScale
-			.map(value => ({ value, sort: Math.random() }))
-			.sort((a, b) => a.sort - b.sort)
-			.map(({ value }) => value)
-		);
-	}
-
-	return bag.pop();
-}
-
-function reset() {
-	bag.length = 0;
-	nextBag.length = 0;
+	const drawBag: number[] = [];
+	const nextNotes = writable([]);
 
 	fillNextNotes();
-}
 
+	function fillNextNotes() {
+		while (get(nextNotes).length < displayAmount) {
+			nextNotes.update(i => i.concat(pullFromBag()));
+		}
+	}
 
-function getStoreObject() {
-	return {
-		displayAmount,
-		selectedScale: Object.keys(scales).find(key => scales[key] === selectedScale),
-		nextBag
-	};
-}
-
-const { subscribe, set, update } = writable(getStoreObject());
-
-export const noteGenerator = {
-	subscribe,
-	selectScale: (scl: string) => {
-		if (scales[scl]) {
-			selectedScale = scales[scl];
-		} else {
-			selectedScale = scales.major;
+	function pullFromBag() {
+		if (drawBag.length <= 1) {
+			drawBag.push(...selectedScale
+				.map(value => ({ value, sort: Math.random() }))
+				.sort((a, b) => a.sort - b.sort)
+				.map(({ value }) => value)
+			);
 		}
 
-		reset();
-
-		set(getStoreObject());
-	},
-	setDisplayAmount: (amount: number) => {
-		displayAmount = Math.min(Math.max(amount, 1), 20);
-
-		reset();
-
-		set(getStoreObject());
-	},
-	pullNote: () => {
-		nextBag.shift();
-		fillNextNotes();
-
-		set(getStoreObject());
-	},
-	reset: () => {
-		reset();
-
-		set(getStoreObject());
+		return drawBag.pop();
 	}
-}
+
+	function reset() {
+		drawBag.length = 0;
+		nextNotes.set([]);
+
+		fillNextNotes();
+	}
+
+	return {
+		nextNotes: derived(nextNotes, $nextNotes => $nextNotes),
+		selectScale(scale: string) {
+			if (scaleNames.includes(scale)) {
+				selectedScale = scales[scale];
+			}
+
+			reset();
+		},
+		setDisplayAmount(amount: number) {
+			displayAmount = amount;
+			reset();
+		},
+		pullNote() {
+			nextNotes.update(i => i.slice(1, i.length));
+			fillNextNotes();
+		},
+		reset() {
+			reset();
+		}
+	}
+})();
+
+export const { nextNotes } = noteGenerator;
