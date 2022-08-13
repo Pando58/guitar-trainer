@@ -7,7 +7,7 @@
   import Button from "@/components/Button.svelte";
   import Select from "@/components/Select.svelte";
   import InputNumber from "@/components/InputNumber.svelte";
-  import { noteGenerator } from "@/stores/noteGenerator";
+  import { noteGenerator, nextNotes } from "@/stores/noteGenerator";
   import {
     stores as appSettings,
     selectedScale,
@@ -130,7 +130,7 @@
     </div>
   </div>
   <div class="w-full flex flex-col items-center pt-20 pb-10">
-    {#each $noteGenerator.nextBag as next, i (getCounterId(i + counter))}
+    {#each $nextNotes as next, i (getCounterId(i + counter))}
       <div
         class="{i === 0 ? 'text-6xl text-gray-50' : 'text-4xl text-gray-400'}"
         in:receive={{key: "in"}}
