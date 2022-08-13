@@ -9,7 +9,7 @@
   import InputNumber from "@/components/InputNumber.svelte";
   import { noteGenerator } from "@/stores/noteGenerator";
   import {
-    stores,
+    stores as appSettings,
     selectedScale,
     displayAmount,
     nextNoteTimer
@@ -38,8 +38,8 @@
   function updateInput({ detail }: CustomEvent) {
     const { input, value, update } = detail;
     
-    stores[input].set(value);
-    update(get(stores[input]));
+    appSettings[input].set(value);
+    update(get(appSettings[input]));
   }
 
   function btnReset() {
