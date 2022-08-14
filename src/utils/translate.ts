@@ -1,8 +1,9 @@
 import { def, lang } from "@/data/lang";
-import { path } from "@/utils/urlData";
 
 export function getEntry(entry: string) {
-  const l = Object.keys(lang).includes(path[0]) ? path[0] : def;
+  const param = new URLSearchParams(window.location.search).get("lang");
+
+  const l = Object.keys(lang).includes(param) ? param : def;
 
   let checking: any = null;
 
