@@ -1,15 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "index.html",
-    "./src/**/*.{js,ts,svelte}"
-  ],
+  content: ["index.html", "./src/**/*.{js,ts,svelte}"],
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Inter']
-      }
-    }
+        sans: ["Inter"],
+      },
+    },
   },
-  plugins: []
-}
+  plugins: [],
+};
