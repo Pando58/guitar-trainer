@@ -14,7 +14,8 @@
     displayAmount,
     nextNoteTimer,
   } from "@/stores/appSettings";
-  import { intervalNames, scaleNames } from "@/data/scales";
+  import { scaleNames } from "@/data/scales";
+  import { getEntry } from "@/utils/translate";
 
   let timerActive = false;
   let counter = 0;
@@ -113,11 +114,15 @@
 <main class="w-full h-full p-1.5">
   <div class="flex items-center justify-center flex-wrap">
     <div class="controls">
-      Scale:
-      <Select list={scaleNames} bind:selected={$selectedScale} />
+      {getEntry("scale")}:
+      <Select
+        displayList={Object.values(getEntry("scales"))}
+        list={scaleNames}
+        bind:selected={$selectedScale}
+      />
     </div>
     <div class="controls">
-      Display amount:
+      {getEntry("displayAmount")}:
       <InputNumber
         name={"displayAmount"}
         value={$displayAmount}
@@ -136,7 +141,7 @@
         useBorder={false}
         noPadding={true}
       />
-      Timer:
+      {getEntry("timer")}:
       <InputNumber
         name={"nextNoteTimer"}
         value={$nextNoteTimer}
@@ -149,8 +154,8 @@
     </div>
     <span class="w-4" />
     <div>
-      <Button text="reset" on:click={btnReset} />
-      <Button text="next" on:click={btnNext} />
+      <Button text={getEntry("reset")} on:click={btnReset} />
+      <Button text={getEntry("next")} on:click={btnNext} />
     </div>
   </div>
   <div class="w-full flex flex-col items-center pt-20 pb-10">
@@ -164,7 +169,7 @@
           easing: cubicOut,
         }}
       >
-        {intervalNames[next]}
+        {getEntry(`intervals.abbreviated.${next}`)}
       </div>
     {/each}
   </div>
