@@ -4,9 +4,11 @@
   import { flip } from "svelte/animate";
   import { get } from "svelte/store";
   import svg_timer from "@/assets/timer.svg";
+  import svg_config from "@/assets/config.svg";
   import Button from "@/components/Button.svelte";
   import Select from "@/components/Select.svelte";
   import InputNumber from "@/components/InputNumber.svelte";
+  import Sidebar from "./components/Sidebar.svelte";
   import { noteGenerator, nextNotes } from "@/stores/noteGenerator";
   import {
     stores as appSettings,
@@ -17,6 +19,7 @@
   import { scaleNames } from "@/data/scales";
   import { getEntry } from "@/utils/translate";
 
+  let sidebar: Sidebar;
   let timerActive = false;
   let counter = 0;
   let timerInterval: NodeJS.Timer = null;
@@ -55,6 +58,10 @@
 
   function getCounterId(n: number) {
     return n - Math.floor(n / counterLimit) * counterLimit;
+  }
+
+  function openSidebar() {
+    sidebar.open();
   }
 
   $: {
@@ -111,51 +118,60 @@
   });
 </script>
 
-<main class="w-full h-full p-1.5">
-  <div class="flex items-center justify-center flex-wrap">
-    <div class="controls">
-      {getEntry("scale")}:
-      <Select
-        displayList={Object.values(getEntry("scales"))}
-        list={scaleNames}
-        bind:selected={$selectedScale}
-      />
+<main class="w-full h-full">
+  <Sidebar bind:this={sidebar} />
+  <div class="flex">
+    <div class="w-10" />
+    <div class="flex-1 flex items-center justify-center flex-wrap p-1.5">
+      <div class="controls">
+        {getEntry("scale")}:
+        <Select
+          displayList={Object.values(getEntry("scales"))}
+          list={scaleNames}
+          bind:selected={$selectedScale}
+        />
+      </div>
+      <div class="controls">
+        {getEntry("displayAmount")}:
+        <InputNumber
+          name={"displayAmount"}
+          value={$displayAmount}
+          step={1}
+          min={1}
+          max={20}
+          on:updateInput={updateInput}
+          class_="w-14"
+        />
+      </div>
+      <div class="controls">
+        <Button
+          on:click={() => (timerActive = !timerActive)}
+          bind:faded={timerFaded}
+          icon={svg_timer}
+          useBorder={false}
+          noPadding={true}
+        />
+        {getEntry("timer")}:
+        <InputNumber
+          name={"nextNoteTimer"}
+          value={$nextNoteTimer}
+          step={0.1}
+          min={0.1}
+          max={60}
+          on:updateInput={updateInput}
+          class_="w-16"
+        />
+      </div>
+      <span class="w-4" />
+      <div>
+        <Button text={getEntry("reset")} on:click={btnReset} />
+        <Button text={getEntry("next")} on:click={btnNext} />
+      </div>
     </div>
-    <div class="controls">
-      {getEntry("displayAmount")}:
-      <InputNumber
-        name={"displayAmount"}
-        value={$displayAmount}
-        step={1}
-        min={1}
-        max={20}
-        on:updateInput={updateInput}
-        class_="w-14"
-      />
-    </div>
-    <div class="controls">
-      <Button
-        on:click={() => (timerActive = !timerActive)}
-        bind:faded={timerFaded}
-        icon={svg_timer}
-        useBorder={false}
-        noPadding={true}
-      />
-      {getEntry("timer")}:
-      <InputNumber
-        name={"nextNoteTimer"}
-        value={$nextNoteTimer}
-        step={0.1}
-        min={0.1}
-        max={60}
-        on:updateInput={updateInput}
-        class_="w-16"
-      />
-    </div>
-    <span class="w-4" />
-    <div>
-      <Button text={getEntry("reset")} on:click={btnReset} />
-      <Button text={getEntry("next")} on:click={btnNext} />
+    <div class="w-10">
+      <button class="p-2" on:click={openSidebar}>
+        <img src={svg_config} alt="config" />
+      </button>
     </div>
   </div>
   <div class="w-full flex flex-col items-center pt-20 pb-10">
