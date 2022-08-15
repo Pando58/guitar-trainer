@@ -6,8 +6,10 @@
     updateInput,
     selectedScale,
     displayAmount,
+    intervalDisplayMode,
   } from "@/stores/appSettings";
   import { scaleNames } from "@/data/scales";
+  import { intervalDisplayModes } from "@/data/appSettingsData";
 </script>
 
 <div
@@ -32,6 +34,15 @@
       max={20}
       on:updateInput={updateInput}
       class_="w-14"
+    />
+  </div>
+  <div class="setting">
+    <span>{getEntry("settings.intervalDisplayMode")}</span>
+    <Select
+      displayList={getEntry("intervalDisplayModes")}
+      list={intervalDisplayModes}
+      textTransform="capitalize"
+      bind:selected={$intervalDisplayMode}
     />
   </div>
 </div>
