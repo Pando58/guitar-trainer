@@ -18,6 +18,7 @@
     <Select
       displayList={Object.values(getEntry("scales"))}
       list={scaleNames}
+      textTransform="capitalize"
       bind:selected={$selectedScale}
     />
   </div>
