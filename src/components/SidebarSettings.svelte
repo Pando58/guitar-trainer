@@ -14,7 +14,7 @@
   class="flex flex-col w-full sm:w-[32rem] px-2 xs:px-4 divide-y divide-black divide-opacity-20"
 >
   <div class="setting">
-    <span>{getEntry("scale")}</span>
+    <span>{getEntry("settings.scale")}</span>
     <Select
       displayList={Object.values(getEntry("scales"))}
       list={scaleNames}
@@ -23,7 +23,7 @@
     />
   </div>
   <div class="setting">
-    <span>{getEntry("displayAmount")}</span>
+    <span>{getEntry("settings.displayAmount")}</span>
     <InputNumber
       name={"displayAmount"}
       value={$displayAmount}
