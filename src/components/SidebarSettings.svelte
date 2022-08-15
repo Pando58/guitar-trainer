@@ -1,1 +1,50 @@
-<span>settings</span>
+<script>
+  import Select from "@/components/Select.svelte";
+  import InputNumber from "@/components/InputNumber.svelte";
+  import { getEntry } from "@/utils/translate";
+  import {
+    updateInput,
+    selectedScale,
+    displayAmount,
+  } from "@/stores/appSettings";
+  import { scaleNames } from "@/data/scales";
+</script>
+
+<div
+  class="flex flex-col w-full sm:w-[32rem] px-2 xs:px-4 divide-y divide-black divide-opacity-20"
+>
+  <div class="setting">
+    <span>{getEntry("scale")}</span>
+    <Select
+      displayList={Object.values(getEntry("scales"))}
+      list={scaleNames}
+      bind:selected={$selectedScale}
+    />
+  </div>
+  <div class="setting">
+    <span>{getEntry("displayAmount")}</span>
+    <InputNumber
+      name={"displayAmount"}
+      value={$displayAmount}
+      step={1}
+      min={1}
+      max={20}
+      on:updateInput={updateInput}
+      class_="w-14"
+    />
+  </div>
+</div>
+
+<style>
+  .setting {
+    @apply flex-1 flex justify-between items-center pl-4 py-1;
+  }
+
+  .setting span {
+    @apply text-gray-200 font-medium text-sm lowercase;
+  }
+
+  .setting span::first-letter {
+    @apply uppercase;
+  }
+</style>

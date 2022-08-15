@@ -6,7 +6,6 @@
   import svg_timer from "@/assets/timer.svg";
   import svg_config from "@/assets/config.svg";
   import Button from "@/components/Button.svelte";
-  import Select from "@/components/Select.svelte";
   import InputNumber from "@/components/InputNumber.svelte";
   import WithLabel from "@/components/WithLabel.svelte";
   import Sidebar from "@/components/Sidebar.svelte";
@@ -17,7 +16,6 @@
     displayAmount,
     nextNoteTimer,
   } from "@/stores/appSettings";
-  import { scaleNames } from "@/data/scales";
   import { getEntry } from "@/utils/translate";
 
   let sidebar: Sidebar;
@@ -119,24 +117,6 @@
     <div
       class="flex-1 flex items-center justify-center flex-wrap gap-x-4 p-1.5"
     >
-      <WithLabel text={getEntry("scale")}>
-        <Select
-          displayList={Object.values(getEntry("scales"))}
-          list={scaleNames}
-          bind:selected={$selectedScale}
-        />
-      </WithLabel>
-      <WithLabel text={getEntry("displayAmount")}>
-        <InputNumber
-          name={"displayAmount"}
-          value={$displayAmount}
-          step={1}
-          min={1}
-          max={20}
-          on:updateInput={updateInput}
-          class_="w-14"
-        /></WithLabel
-      >
       <div class="flex items-center">
         <Button
           on:click={() => (timerActive = !timerActive)}
