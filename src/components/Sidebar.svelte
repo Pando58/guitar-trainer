@@ -19,11 +19,15 @@
     <div
       in:scale={{ start: 0.7, duration: 300 }}
       out:scale={{ start: 0.7, duration: 300, easing: cubicIn }}
-      class="absolute inset-1 xs:inset-6 sm:inset-12 p-2 bg-gray-800 shadow-md rounded"
+      class="absolute inset-1 xs:inset-6 sm:inset-12 p-2 bg-gray-800 bg-opacity-95 sm:bg-opacity-90 shadow-md rounded"
     >
       <div>
         <button class="p-1 float-right" on:click={() => (visible = false)}>
-          <img src={svg_close} class="h-3 opacity-20" alt="close" />
+          <img
+            src={svg_close}
+            class="h-3 opacity-50 xs:opacity-20"
+            alt="close"
+          />
         </button>
       </div>
       <div class="w-full flex justify-center">
