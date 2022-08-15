@@ -1,18 +1,23 @@
 import { get, type Writable } from "svelte/store";
 import { select, inputNumber } from "@/utils/storeTransforms";
 import { transformableStore } from "@/utils/transformableStore";
-import { scaleNames } from "@/data/scales";
-import { intervalDisplayModes } from "@/data/settings";
+import settings from "@/data/settings";
+import type { setting } from "@/data/settings";
+
+function createStore(s: setting) {
+  const f =
+    "list" in s
+      ? (v: string) => select(v, s.list)
+      : (v: number) => inputNumber(v, s.min, s.max);
+
+  return transformableStore(s.value, f);
+}
 
 export const stores: { [key: string]: Writable<any> } = {
-  selectedScale: transformableStore(scaleNames[0], (val) =>
-    select(val, scaleNames)
-  ),
-  displayAmount: transformableStore(5, (val) => inputNumber(val, 1, 20)),
-  nextNoteTimer: transformableStore(5, (val) => inputNumber(val, 0.1, 60)),
-  intervalDisplayMode: transformableStore(intervalDisplayModes[0], (val) =>
-    select(val, intervalDisplayModes)
-  ),
+  selectedScale: createStore(settings.selectedScale),
+  displayAmount: createStore(settings.displayAmount),
+  nextNoteTimer: createStore(settings.nextNoteTimer),
+  intervalDisplayMode: createStore(settings.intervalDisplayMode),
 };
 
 export const {

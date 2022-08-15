@@ -5,11 +5,9 @@
   import {
     updateInput,
     selectedScale,
-    displayAmount,
     intervalDisplayMode,
   } from "@/stores/settingsStore";
-  import { scaleNames } from "@/data/scales";
-  import { intervalDisplayModes } from "@/data/settings";
+  import settings from "@/data/settings";
 </script>
 
 <div
@@ -19,19 +17,19 @@
     <span>{getEntry("settings.scale")}</span>
     <Select
       displayList={Object.values(getEntry("scales"))}
-      list={scaleNames}
-      textTransform="capitalize"
+      list={settings.selectedScale.list}
       bind:selected={$selectedScale}
+      textTransform="capitalize"
     />
   </div>
   <div class="setting">
     <span>{getEntry("settings.displayAmount")}</span>
     <InputNumber
+      value={settings.displayAmount.value}
+      min={settings.displayAmount.min}
+      max={settings.displayAmount.max}
+      step={settings.displayAmount.step}
       name={"displayAmount"}
-      value={$displayAmount}
-      step={1}
-      min={1}
-      max={20}
       on:updateInput={updateInput}
       class_="w-14"
     />
@@ -40,9 +38,9 @@
     <span>{getEntry("settings.intervalDisplayMode")}</span>
     <Select
       displayList={getEntry("intervalDisplayModes")}
-      list={intervalDisplayModes}
-      textTransform="capitalize"
+      list={settings.intervalDisplayMode.list}
       bind:selected={$intervalDisplayMode}
+      textTransform="capitalize"
     />
   </div>
 </div>
