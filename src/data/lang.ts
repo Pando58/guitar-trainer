@@ -4,11 +4,13 @@ type entry = string | entry[] | { [key: string]: entry };
 
 export const lang: { [key: string]: { [key: string]: entry } } = {
   en: {
-    scale: "scale",
-    displayAmount: "display amount",
     timer: "timer",
     reset: "reset",
     next: "next",
+    settings: {
+      scale: "scale",
+      displayAmount: "display amount",
+    },
     scales: {
       major: "major",
       dorian: "dorian",
@@ -68,11 +70,13 @@ export const lang: { [key: string]: { [key: string]: entry } } = {
     },
   },
   es: {
-    scale: "escala",
-    displayAmount: "cantidad a mostrar",
     timer: "cronómetro",
     reset: "reiniciar",
     next: "siguiente",
+    settings: {
+      scale: "escala",
+      displayAmount: "cantidad a mostrar",
+    },
     scales: {
       major: "mayor",
       dorian: "dórica",
