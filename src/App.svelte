@@ -16,7 +16,7 @@
     displayAmount,
     nextNoteTimer,
     intervalDisplayMode,
-  } from "@/stores/appSettings";
+  } from "@/stores/settingsStore";
   import { getEntry } from "@/utils/translate";
 
   let sidebar: Sidebar;

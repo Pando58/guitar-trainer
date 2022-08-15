@@ -2,7 +2,7 @@ import { get, type Writable } from "svelte/store";
 import { select, inputNumber } from "@/utils/storeTransforms";
 import { transformableStore } from "@/utils/transformableStore";
 import { scaleNames } from "@/data/scales";
-import { intervalDisplayModes } from "@/data/appSettingsData";
+import { intervalDisplayModes } from "@/data/settings";
 
 export const stores: { [key: string]: Writable<any> } = {
   selectedScale: transformableStore(scaleNames[0], (val) =>

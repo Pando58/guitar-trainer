@@ -7,9 +7,9 @@
     selectedScale,
     displayAmount,
     intervalDisplayMode,
-  } from "@/stores/appSettings";
+  } from "@/stores/settingsStore";
   import { scaleNames } from "@/data/scales";
-  import { intervalDisplayModes } from "@/data/appSettingsData";
+  import { intervalDisplayModes } from "@/data/settings";
 </script>
 
 <div
