@@ -152,7 +152,20 @@
   <div class="w-full flex flex-col items-center pt-20 pb-10">
     {#each $nextNotes as next, i (getCounterId(i + counter))}
       <div
-        class={i === 0 ? "text-6xl text-gray-50" : "text-4xl text-gray-400"}
+        class={`min-h-[2rem] xs:min-h-[3rem] ${
+          i === 0 ? "text-gray-50" : "text-gray-400"
+        }`}
+        style={(() => {
+          const l = getEntry(
+            `intervals.${$intervalDisplayMode}.${next}`
+          ).length;
+
+          const a = i === 0 ? 3.75 : 2.25;
+          const b = (1 / l) * (document.documentElement.clientWidth / 10);
+          const size = a < b ? a : b;
+
+          return `font-size: ${size}rem`;
+        })()}
         in:receive={{ key: "in" }}
         out:send={{ key: "out" }}
         animate:flip={{
