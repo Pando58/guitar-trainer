@@ -10,7 +10,9 @@ export const lang: { [key: string]: { [key: string]: entry } } = {
     settings: {
       scale: "scale",
       displayAmount: "display amount",
+      intervalDisplayMode: "interval names",
     },
+    intervalDisplayModes: ["full", "short", "abbreviated"],
     scales: {
       major: "major",
       dorian: "dorian",
@@ -76,7 +78,9 @@ export const lang: { [key: string]: { [key: string]: entry } } = {
     settings: {
       scale: "escala",
       displayAmount: "cantidad a mostrar",
+      intervalDisplayMode: "nombres de intervalos",
     },
+    intervalDisplayModes: ["completo", "corto", "abreviado"],
     scales: {
       major: "mayor",
       dorian: "dórica",

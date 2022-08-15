@@ -15,6 +15,7 @@
     selectedScale,
     displayAmount,
     nextNoteTimer,
+    intervalDisplayMode,
   } from "@/stores/appSettings";
   import { getEntry } from "@/utils/translate";
 
@@ -159,7 +160,7 @@
           easing: cubicOut,
         }}
       >
-        {getEntry(`intervals.abbreviated.${next}`)}
+        {getEntry(`intervals.${$intervalDisplayMode}.${next}`)}
       </div>
     {/each}
   </div>
