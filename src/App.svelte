@@ -12,7 +12,7 @@
   import Sidebar from "@/components/Sidebar.svelte";
   import { noteGenerator, nextNotes } from "@/stores/noteGenerator";
   import {
-    stores as appSettings,
+    updateInput,
     selectedScale,
     displayAmount,
     nextNoteTimer,
@@ -38,13 +38,6 @@
     } else {
       counter++;
     }
-  }
-
-  function updateInput({ detail }: CustomEvent) {
-    const { input, value, update } = detail;
-
-    appSettings[input].set(value);
-    update(get(appSettings[input]));
   }
 
   function btnReset() {
