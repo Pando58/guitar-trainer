@@ -8,7 +8,8 @@
   import Button from "@/components/Button.svelte";
   import Select from "@/components/Select.svelte";
   import InputNumber from "@/components/InputNumber.svelte";
-  import Sidebar from "./components/Sidebar.svelte";
+  import WithLabel from "@/components/WithLabel.svelte";
+  import Sidebar from "@/components/Sidebar.svelte";
   import { noteGenerator, nextNotes } from "@/stores/noteGenerator";
   import {
     stores as appSettings,
@@ -122,17 +123,17 @@
   <Sidebar bind:this={sidebar} />
   <div class="flex">
     <div class="w-10" />
-    <div class="flex-1 flex items-center justify-center flex-wrap p-1.5">
-      <div class="controls">
-        {getEntry("scale")}:
+    <div
+      class="flex-1 flex items-center justify-center flex-wrap gap-x-4 p-1.5"
+    >
+      <WithLabel text={getEntry("scale")}>
         <Select
           displayList={Object.values(getEntry("scales"))}
           list={scaleNames}
           bind:selected={$selectedScale}
         />
-      </div>
-      <div class="controls">
-        {getEntry("displayAmount")}:
+      </WithLabel>
+      <WithLabel text={getEntry("displayAmount")}>
         <InputNumber
           name={"displayAmount"}
           value={$displayAmount}
@@ -141,9 +142,9 @@
           max={20}
           on:updateInput={updateInput}
           class_="w-14"
-        />
-      </div>
-      <div class="controls">
+        /></WithLabel
+      >
+      <div class="flex items-center">
         <Button
           on:click={() => (timerActive = !timerActive)}
           bind:faded={timerFaded}
@@ -151,18 +152,18 @@
           useBorder={false}
           noPadding={true}
         />
-        {getEntry("timer")}:
-        <InputNumber
-          name={"nextNoteTimer"}
-          value={$nextNoteTimer}
-          step={0.1}
-          min={0.1}
-          max={60}
-          on:updateInput={updateInput}
-          class_="w-16"
-        />
+        <WithLabel text={getEntry("timer")}>
+          <InputNumber
+            name={"nextNoteTimer"}
+            value={$nextNoteTimer}
+            step={0.1}
+            min={0.1}
+            max={60}
+            on:updateInput={updateInput}
+            class_="w-16"
+          />
+        </WithLabel>
       </div>
-      <span class="w-4" />
       <div>
         <Button text={getEntry("reset")} on:click={btnReset} />
         <Button text={getEntry("next")} on:click={btnNext} />
@@ -190,9 +191,3 @@
     {/each}
   </div>
 </main>
-
-<style>
-  .controls {
-    @apply ml-2 text-gray-200 font-medium text-xs leading-tight uppercase;
-  }
-</style>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { fade, scale } from "svelte/transition";
   import { cubicIn } from "svelte/easing";
-  import SidebarSettings from "./SidebarSettings.svelte";
+  import SidebarSettings from "@/components/SidebarSettings.svelte";
   import svg_close from "@/assets/close.svg";
 
   let visible = false;
