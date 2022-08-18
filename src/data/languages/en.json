@@ -3,6 +3,10 @@
   "reset": "reset",
   "next": "next",
   "settings": {
+    "titles": {
+      "general": "general",
+      "language": "language"
+    },
     "scale": {
       "label": "scale",
       "options": {
@@ -23,6 +27,13 @@
         "full": "full",
         "short": "short",
         "abbreviated": "abbreviated"
+      }
+    },
+    "language": {
+      "label": "language",
+      "options": {
+        "en": "english",
+        "es": "spanish"
       }
     }
   },
