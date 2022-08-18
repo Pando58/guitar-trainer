@@ -13,7 +13,14 @@ export function getEntries(
   const checks = [langs[l], langs[def]];
 
   for (let i in checks) {
-    const entry = getEntry(checks[i]);
+    let entry;
+
+    try {
+      entry = getEntry(checks[i]);
+    } catch (err) {
+      console.log(err);
+      continue;
+    }
 
     if (entry !== undefined) {
       return entry;
