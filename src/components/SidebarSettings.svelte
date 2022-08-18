@@ -1,7 +1,7 @@
 <script>
   import Select from "@/components/Select.svelte";
   import InputNumber from "@/components/InputNumber.svelte";
-  import { getEntry } from "@/utils/translate";
+  import { getEntries, getEntry } from "@/utils/lang";
   import {
     updateInput,
     selectedScale,
@@ -14,16 +14,16 @@
   class="flex flex-col w-full sm:w-[32rem] px-2 xs:px-4 divide-y divide-black divide-opacity-20"
 >
   <div class="setting">
-    <span>{getEntry("settings.scale")}</span>
+    <span>{getEntry((e) => e.settings.scale.label)}</span>
     <Select
-      displayList={Object.values(getEntry("scales"))}
+      displayList={Object.values(getEntries((e) => e.settings.scale.options))}
       list={settings.selectedScale.list}
       bind:selected={$selectedScale}
       textTransform="capitalize"
     />
   </div>
   <div class="setting">
-    <span>{getEntry("settings.displayAmount")}</span>
+    <span>{getEntry((e) => e.settings.displayAmount)}</span>
     <InputNumber
       value={settings.displayAmount.value}
       min={settings.displayAmount.min}
@@ -35,9 +35,11 @@
     />
   </div>
   <div class="setting">
-    <span>{getEntry("settings.intervalDisplayMode")}</span>
+    <span>{getEntry((e) => e.settings.intervalDisplayMode.label)}</span>
     <Select
-      displayList={getEntry("intervalDisplayModes")}
+      displayList={Object.values(
+        getEntries((e) => e.settings.intervalDisplayMode.options)
+      )}
       list={settings.intervalDisplayMode.list}
       bind:selected={$intervalDisplayMode}
       textTransform="capitalize"
