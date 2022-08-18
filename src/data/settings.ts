@@ -1,4 +1,4 @@
-import { scaleNames } from "@/data/scales";
+import { scales } from "@/data/scales";
 
 interface select {
   value: string;
@@ -14,7 +14,8 @@ interface inputNumber {
 
 export type setting = select | inputNumber;
 
-const intervalDisplayModes = ["full", "short", "abbreviated"];
+export const scaleNames = Object.keys(scales);
+export const intervalDisplayModes = ["full", "short", "abbreviated"];
 
 const settings: {
   selectedScale: select;

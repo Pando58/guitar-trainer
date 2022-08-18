@@ -17,7 +17,7 @@
     nextNoteTimer,
     intervalDisplayMode,
   } from "@/stores/settingsStore";
-  import { getEntry } from "@/utils/translate";
+  import { getEntry, getEntryWithString } from "@/utils/lang";
 
   let sidebar: Sidebar;
   let timerActive = false;
@@ -126,7 +126,7 @@
           useBorder={false}
           noPadding={true}
         />
-        <WithLabel text={getEntry("timer")}>
+        <WithLabel text={getEntry((e) => e.timer)}>
           <InputNumber
             name={"nextNoteTimer"}
             value={$nextNoteTimer}
@@ -139,8 +139,8 @@
         </WithLabel>
       </div>
       <div>
-        <Button text={getEntry("reset")} on:click={btnReset} />
-        <Button text={getEntry("next")} on:click={btnNext} />
+        <Button text={getEntry((e) => e.reset)} on:click={btnReset} />
+        <Button text={getEntry((e) => e.next)} on:click={btnNext} />
       </div>
     </div>
     <div class="w-10">
@@ -152,14 +152,18 @@
   <div class="w-full flex flex-col items-center pt-20 pb-10">
     {#each $nextNotes as next, i (getCounterId(i + counter))}
       <div
-        class={`flex items-center min-h-[3rem] xs:min-h-[4rem] ${ i === 0 ? "text-gray-50" : "text-gray-400" }`}
+        class={`flex items-center min-h-[3rem] xs:min-h-[4rem] ${
+          i === 0 ? "text-gray-50" : "text-gray-400"
+        }`}
         style={(() => {
-          const l = getEntry(
+          const l = getEntryWithString(
             `intervals.${$intervalDisplayMode}.${next}`
           ).length;
 
           const a = i === 0 ? 3.75 : 2.25;
-          const b = (1 / l) * (document.documentElement.clientWidth / (i === 0 ? 10 : 16));
+          const b =
+            (1 / l) *
+            (document.documentElement.clientWidth / (i === 0 ? 10 : 16));
           const size = a < b ? a : b;
 
           return `font-size: ${size}rem`;
@@ -171,7 +175,7 @@
           easing: cubicOut,
         }}
       >
-        {getEntry(`intervals.${$intervalDisplayMode}.${next}`)}
+        {getEntryWithString(`intervals.${$intervalDisplayMode}.${next}`)}
       </div>
     {/each}
   </div>

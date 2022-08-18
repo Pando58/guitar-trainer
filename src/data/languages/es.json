@@ -1,0 +1,76 @@
+{
+  "timer": "cronómetro",
+  "reset": "reiniciar",
+  "next": "siguiente",
+  "settings": {
+    "scale": {
+      "label": "escala",
+      "options": {
+        "major": "mayor",
+        "dorian": "dórica",
+        "phrygian": "frigia",
+        "lydian": "lidia",
+        "mixolydian": "mixolidia",
+        "minor": "menor",
+        "locrian": "locria",
+        "chromatic": "cromática"
+      }
+    },
+    "displayAmount": "cantidad a mostrar",
+    "intervalDisplayMode": {
+      "label": "nombres de intervalos",
+      "options": {
+        "full": "completo",
+        "short": "corto",
+        "abbreviated": "abreviado"
+      }
+    }
+  },
+  "intervals": {
+    "full": [
+      "primera",
+      "segunda menor",
+      "segunda mayor",
+      "tercera menor",
+      "tercera mayor",
+      "cuarta justa",
+      "cuarta aumentada / quinta disminuida",
+      "quinta justa",
+      "sexta menor",
+      "sexta mayor",
+      "séptima menor",
+      "séptima mayor",
+      "octava"
+    ],
+    "short": [
+      "1P",
+      "2m",
+      "2M",
+      "3m",
+      "3M",
+      "4J",
+      "4A / 5d",
+      "5J",
+      "6m",
+      "6M",
+      "7m",
+      "7M",
+      "8P"
+    ],
+    "abbreviated": [
+      "1ra P",
+      "2da m",
+      "2da M",
+      "3ra m",
+      "3ra M",
+      "4ta J",
+      "4ta A / 5ta d",
+      "5ta J",
+      "6ta m",
+      "6ta M",
+      "7ma m",
+      "7ma M",
+      "8va P"
+    ]
+  }
+}

@@ -1,5 +1,6 @@
 import { writable, derived, get } from "svelte/store";
-import { scaleNames, scales } from "@/data/scales";
+import { scales } from "@/data/scales";
+import { scaleNames } from "@/data/settings";
 
 export const noteGenerator = (() => {
   let displayAmount = 5;
