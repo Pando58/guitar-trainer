@@ -1,17 +1,25 @@
-<script>
+<script lang="ts">
   import Select from "@/components/Select.svelte";
   import InputNumber from "@/components/InputNumber.svelte";
-  import { getEntries, getEntry } from "@/utils/lang";
+  import { getCurrentLang, getEntries, getEntry } from "@/utils/lang";
   import {
     updateInput,
     selectedScale,
     intervalDisplayMode,
   } from "@/stores/settingsStore";
   import settings from "@/data/settings";
+
+  function langChange(e: InputEvent) {
+    location.href =
+      location.origin +
+      location.pathname +
+      "?lang=" +
+      (<HTMLSelectElement>e.target).value;
+  }
 </script>
 
 <div class="flex flex-col w-full sm:w-[32rem] px-2 xs:px-4">
-  <span class="title">General</span>
+  <span class="title">{getEntry((e) => e.settings.titles.general)}</span>
   <div class="group">
     <div class="setting">
       <span>{getEntry((e) => e.settings.scale.label)}</span>
@@ -46,11 +54,30 @@
       />
     </div>
   </div>
+  <span class="title">{getEntry((e) => e.settings.titles.language)}</span>
+  <div class="group">
+    <div class="setting">
+      <span>{getEntry((e) => e.settings.language.label)}</span>
+      <Select
+        displayList={Object.values(
+          getEntries((e) => e.settings.language.options)
+        )}
+        list={Object.keys(getEntries((e) => e.settings.language.options))}
+        selected={getCurrentLang()}
+        on:change={langChange}
+        textTransform="capitalize"
+      />
+    </div>
+  </div>
 </div>
 
 <style>
   .title {
     @apply mb-3 mt-5 text-sm font-bold;
+  }
+
+  .title::first-letter {
+    @apply uppercase;
   }
 
   .group {

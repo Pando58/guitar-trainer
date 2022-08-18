@@ -12,9 +12,14 @@ export interface langStructure {
   reset: string;
   next: string;
   settings: {
+    titles: {
+      general: string;
+      language: string;
+    };
     scale: select;
     displayAmount: string;
     intervalDisplayMode: select;
+    language: select;
   };
   intervals: {
     full: string[];
@@ -25,7 +30,10 @@ export interface langStructure {
 
 export const def = "en";
 
-export const langs: { [key: string]: DeepPartial<langStructure> } = {
+export const langs: {
+  en: langStructure;
+  [key: string]: DeepPartial<langStructure>;
+} = {
   en,
   es,
 };

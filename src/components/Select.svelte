@@ -14,6 +14,7 @@
 
 <select
   bind:value={selected}
+  on:change
   class={`${transform} bg-transparent m-1.5 pl-2 py-1 border-2 border-gray-400 text-gray-200 leading-tight rounded hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-0 transition duration-75 ease-in-out`}
 >
   {#each displayList as item, i}
