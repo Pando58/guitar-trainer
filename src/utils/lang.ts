@@ -2,13 +2,17 @@ import type { DeepPartial } from "@/data/commonTypes";
 import type { langStructure } from "@/data/languages";
 import { def, langs } from "@/data/languages";
 
+export function getCurrentLang() {
+  const param = new URLSearchParams(window.location.search).get("lang");
+  return param in langs ? param : def;
+}
+
 export function getEntries(
   getEntry: (
     e: DeepPartial<langStructure>
   ) => string | { [key: string]: string }
 ) {
-  const param = new URLSearchParams(window.location.search).get("lang");
-  const l = param in langs ? param : def;
+  const l = getCurrentLang();
 
   const checks = [langs[l], langs[def]];
 
@@ -35,9 +39,7 @@ export function getEntry(getEntry: (e: DeepPartial<langStructure>) => string) {
 }
 
 export function getEntryWithString(entry: string) {
-  const param = new URLSearchParams(window.location.search).get("lang");
-
-  const l = param in langs ? param : def;
+  const l = getCurrentLang();
 
   const checks = [langs[l], langs[def]];
 
