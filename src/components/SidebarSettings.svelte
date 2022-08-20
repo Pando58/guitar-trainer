@@ -18,7 +18,7 @@
   }
 </script>
 
-<div class="flex flex-col w-full sm:w-[32rem] px-2 xs:px-4">
+<div class="flex flex-col w-full sm:w-[32rem] px-6">
   <span class="title">{getEntry((e) => e.settings.titles.general)}</span>
   <div class="group">
     <div class="setting">
