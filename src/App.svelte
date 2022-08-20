@@ -16,6 +16,7 @@
     displayAmount,
     nextNoteTimer,
     intervalDisplayMode,
+    tritoneDisplayMode,
   } from "@/stores/settingsStore";
   import { getEntry, getEntryWithString } from "@/utils/lang";
 
@@ -37,6 +38,33 @@
     } else {
       counter++;
     }
+  }
+
+  function getNextInterval(
+    interval: number,
+    intervalDisplayMode: string,
+    tritoneDisplayMode: string
+  ) {
+    if (interval === 6) {
+      if (tritoneDisplayMode === "tritone") {
+        return getEntryWithString(`intervals.${intervalDisplayMode}.6.tt`);
+      }
+
+      const aug4 = getEntryWithString(
+        `intervals.${intervalDisplayMode}.6.aug4`
+      );
+      const dim5 = getEntryWithString(
+        `intervals.${intervalDisplayMode}.6.dim5`
+      );
+
+      if (tritoneDisplayMode === "both") {
+        return `${aug4} / ${dim5}`;
+      }
+
+      return tritoneDisplayMode === "aug4" ? aug4 : dim5;
+    }
+
+    return getEntryWithString(`intervals.${intervalDisplayMode}.${interval}`);
   }
 
   function btnReset() {
@@ -156,8 +184,10 @@
           i === 0 ? "text-gray-50" : "text-gray-400"
         }`}
         style={(() => {
-          const l = getEntryWithString(
-            `intervals.${$intervalDisplayMode}.${next}`
+          const l = getNextInterval(
+            next,
+            $intervalDisplayMode,
+            $tritoneDisplayMode
           ).length;
 
           const a = i === 0 ? 3.75 : 2.25;
@@ -175,7 +205,7 @@
           easing: cubicOut,
         }}
       >
-        {getEntryWithString(`intervals.${$intervalDisplayMode}.${next}`)}
+        {getNextInterval(next, $intervalDisplayMode, $tritoneDisplayMode)}
       </div>
     {/each}
   </div>

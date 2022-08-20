@@ -18,6 +18,7 @@ export const stores: { [key: string]: Writable<any> } = {
   displayAmount: createStore(settings.displayAmount),
   nextNoteTimer: createStore(settings.nextNoteTimer),
   intervalDisplayMode: createStore(settings.intervalDisplayMode),
+  tritoneDisplayMode: createStore(settings.tritoneDisplayMode),
 };
 
 export const {
@@ -25,6 +26,7 @@ export const {
   displayAmount,
   nextNoteTimer,
   intervalDisplayMode,
+  tritoneDisplayMode,
 } = stores;
 
 export function updateInput({ detail }: CustomEvent) {

@@ -29,6 +29,15 @@
         "abbreviated": "abreviado"
       }
     },
+    "tritoneDisplayMode": {
+      "label": "mostrar cuarta aumentada como",
+      "options": {
+        "aug4": "cuarta aumentada",
+        "dim5": "quinta disminuida",
+        "both": "ambos",
+        "tritone": "tritono"
+      }
+    },
     "language": {
       "label": "idioma",
       "options": {
@@ -38,50 +47,62 @@
     }
   },
   "intervals": {
-    "full": [
-      "primera",
-      "segunda menor",
-      "segunda mayor",
-      "tercera menor",
-      "tercera mayor",
-      "cuarta justa",
-      "cuarta aumentada / quinta disminuida",
-      "quinta justa",
-      "sexta menor",
-      "sexta mayor",
-      "séptima menor",
-      "séptima mayor",
-      "octava"
-    ],
-    "short": [
-      "1P",
-      "2m",
-      "2M",
-      "3m",
-      "3M",
-      "4J",
-      "4A / 5d",
-      "5J",
-      "6m",
-      "6M",
-      "7m",
-      "7M",
-      "8P"
-    ],
-    "abbreviated": [
-      "1ra P",
-      "2da m",
-      "2da M",
-      "3ra m",
-      "3ra M",
-      "4ta J",
-      "4ta A / 5ta d",
-      "5ta J",
-      "6ta m",
-      "6ta M",
-      "7ma m",
-      "7ma M",
-      "8va P"
-    ]
+    "full": {
+      "0": "primera",
+      "1": "segunda menor",
+      "2": "segunda mayor",
+      "3": "tercera menor",
+      "4": "tercera mayor",
+      "5": "cuarta justa",
+      "6": {
+        "aug4": "cuarta aumentada",
+        "dim5": "quinta disminuida",
+        "tt": "tritono"
+      },
+      "7": "quinta justa",
+      "8": "sexta menor",
+      "9": "sexta mayor",
+      "10": "séptima menor",
+      "11": "séptima mayor",
+      "12": "octava"
+    },
+    "short": {
+      "0": "1P",
+      "1": "2m",
+      "2": "2M",
+      "3": "3m",
+      "4": "3M",
+      "5": "4J",
+      "6": {
+        "aug4": "4A",
+        "dim5": "5d",
+        "tt": "TT"
+      },
+      "7": "5J",
+      "8": "6m",
+      "9": "6M",
+      "10": "7m",
+      "11": "7M",
+      "12": "8P"
+    },
+    "abbreviated": {
+      "0": "1ra P",
+      "1": "2da m",
+      "2": "2da M",
+      "3": "3ra m",
+      "4": "3ra M",
+      "5": "4ta J",
+      "6": {
+        "aug4": "4ta A",
+        "dim5": "5ta d",
+        "tt": "TT"
+      },
+      "7": "5ta J",
+      "8": "6ta m",
+      "9": "6ta M",
+      "10": "7ma m",
+      "11": "7ma M",
+      "12": "8va P"
+    }
   }
 }

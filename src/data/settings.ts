@@ -16,12 +16,14 @@ export type setting = select | inputNumber;
 
 export const scaleNames = Object.keys(scales);
 export const intervalDisplayModes = ["full", "short", "abbreviated"];
+export const tritoneDisplayModes = ["aug4", "dim5", "both", "tritone"];
 
 const settings: {
   selectedScale: select;
   displayAmount: inputNumber;
   nextNoteTimer: inputNumber;
   intervalDisplayMode: select;
+  tritoneDisplayMode: select;
 } = {
   selectedScale: {
     value: scaleNames[0],
@@ -43,6 +45,10 @@ const settings: {
     value: intervalDisplayModes[2],
     list: intervalDisplayModes,
   },
+  tritoneDisplayMode: {
+    value: tritoneDisplayModes[3],
+    list: tritoneDisplayModes,
+  },
 };
 
 export default settings;
@@ -52,4 +58,5 @@ export const {
   displayAmount,
   nextNoteTimer,
   intervalDisplayMode,
+  tritoneDisplayMode,
 } = settings;
