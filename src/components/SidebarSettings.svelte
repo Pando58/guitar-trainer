@@ -6,6 +6,7 @@
     updateInput,
     selectedScale,
     intervalDisplayMode,
+    tritoneDisplayMode,
   } from "@/stores/settingsStore";
   import settings from "@/data/settings";
 
@@ -50,6 +51,17 @@
         )}
         list={settings.intervalDisplayMode.list}
         bind:selected={$intervalDisplayMode}
+        textTransform="capitalize"
+      />
+    </div>
+    <div class="setting">
+      <span>{getEntry((e) => e.settings.tritoneDisplayMode.label)}</span>
+      <Select
+        displayList={Object.values(
+          getEntries((e) => e.settings.tritoneDisplayMode.options)
+        )}
+        list={settings.tritoneDisplayMode.list}
+        bind:selected={$tritoneDisplayMode}
         textTransform="capitalize"
       />
     </div>

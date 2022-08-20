@@ -29,6 +29,15 @@
         "abbreviated": "abbreviated"
       }
     },
+    "tritoneDisplayMode": {
+      "label": "show augmented fourth as",
+      "options": {
+        "aug4": "augmented fourth",
+        "dim5": "diminished fifth",
+        "both": "both",
+        "tt": "tritone"
+      }
+    },
     "language": {
       "label": "language",
       "options": {
@@ -38,50 +47,62 @@
     }
   },
   "intervals": {
-    "full": [
-      "first",
-      "minor second",
-      "major second",
-      "minor third",
-      "major third",
-      "perfect fourth",
-      "augmented fourth / diminished fifth",
-      "perfect fifth",
-      "minor sixth",
-      "major sixth",
-      "minor seventh",
-      "major seventh",
-      "octave"
-    ],
-    "short": [
-      "P1",
-      "m2",
-      "M2",
-      "m3",
-      "M3",
-      "P4",
-      "A4 / d5",
-      "P5",
-      "m6",
-      "M6",
-      "m7",
-      "M7",
-      "P8"
-    ],
-    "abbreviated": [
-      "P 1st",
-      "m 2nd",
-      "M 2nd",
-      "m 3rd",
-      "M 3rd",
-      "P 4th",
-      "A 4th / d 5th",
-      "P 5th",
-      "m 6th",
-      "M 6th",
-      "m 7th",
-      "M 7th",
-      "P 8th"
-    ]
+    "full": {
+      "0": "first",
+      "1": "minor second",
+      "2": "major second",
+      "3": "minor third",
+      "4": "major third",
+      "5": "perfect fourth",
+      "6": {
+        "aug4": "augmented fourth",
+        "dim5": "diminished fifth",
+        "tt": "tritone"
+      },
+      "7": "perfect fifth",
+      "8": "minor sixth",
+      "9": "major sixth",
+      "10": "minor seventh",
+      "11": "major seventh",
+      "12": "octave"
+    },
+    "short": {
+      "0": "P1",
+      "1": "m2",
+      "2": "M2",
+      "3": "m3",
+      "4": "M3",
+      "5": "P4",
+      "6": {
+        "aug4": "A4",
+        "dim5": "d5",
+        "tt": "TT"
+      },
+      "7": "P5",
+      "8": "m6",
+      "9": "M6",
+      "10": "m7",
+      "11": "M7",
+      "12": "P8"
+    },
+    "abbreviated": {
+      "0": "P 1st",
+      "1": "m 2nd",
+      "2": "M 2nd",
+      "3": "m 3rd",
+      "4": "M 3rd",
+      "5": "P 4th",
+      "6": {
+        "aug4": "A 4th",
+        "dim5": "d 5th",
+        "tt": "TT"
+      },
+      "7": "P 5th",
+      "8": "m 6th",
+      "9": "M 6th",
+      "10": "m 7th",
+      "11": "M 7th",
+      "12": "P 8th"
+    }
   }
 }
