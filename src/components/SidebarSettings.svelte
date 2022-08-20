@@ -5,6 +5,7 @@
   import {
     updateInput,
     selectedScale,
+    displayAmount,
     intervalDisplayMode,
     tritoneDisplayMode,
   } from "@/stores/settingsStore";
@@ -34,7 +35,7 @@
     <div class="setting">
       <span>{getEntry((e) => e.settings.displayAmount)}</span>
       <InputNumber
-        value={settings.displayAmount.value}
+        value={$displayAmount}
         min={settings.displayAmount.min}
         max={settings.displayAmount.max}
         step={settings.displayAmount.step}
