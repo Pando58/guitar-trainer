@@ -21,6 +21,13 @@
       }
     },
     "displayAmount": "cantidad a mostrar",
+    "gamemode": {
+      "label": "modo de juego",
+      "options": {
+        "streak": "racha",
+        "practice": "práctica"
+      }
+    },
     "intervalDisplayMode": {
       "label": "nombres de intervalos",
       "options": {

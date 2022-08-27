@@ -38,6 +38,7 @@ export interface langStructure {
     };
     scale: select;
     displayAmount: string;
+    gamemode: select;
     intervalDisplayMode: select;
     tritoneDisplayMode: select;
     language: select;

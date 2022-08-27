@@ -21,6 +21,13 @@
       }
     },
     "displayAmount": "display amount",
+    "gamemode": {
+      "label": "game mode",
+      "options": {
+        "streak": "streak",
+        "practice": "practice"
+      }
+    },
     "intervalDisplayMode": {
       "label": "interval names",
       "options": {

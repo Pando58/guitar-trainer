@@ -4,6 +4,7 @@
   import { getCurrentLang, getEntries, getEntry } from "@/utils/lang";
   import {
     updateInput,
+    gamemode,
     selectedScale,
     displayAmount,
     intervalDisplayMode,
@@ -23,6 +24,17 @@
 <div class="flex flex-col w-full sm:w-[32rem] px-6">
   <span class="title">{getEntry((e) => e.settings.titles.general)}</span>
   <div class="group">
+    <div class="setting">
+      <span>{getEntry((e) => e.settings.gamemode.label)}</span>
+      <Select
+        displayList={Object.values(
+          getEntries((e) => e.settings.gamemode.options)
+        )}
+        list={settings.gamemode.list}
+        bind:selected={$gamemode}
+        textTransform="capitalize"
+      />
+    </div>
     <div class="setting">
       <span>{getEntry((e) => e.settings.scale.label)}</span>
       <Select

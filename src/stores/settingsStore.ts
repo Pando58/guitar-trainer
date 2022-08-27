@@ -15,6 +15,7 @@ function createStore(s: setting, key?: string) {
 
 // prettier-ignore
 export const stores: { [key: string]: Writable<any> } = {
+  gamemode: createStore(settings.gamemode, "gamemode"),
   selectedScale: createStore(settings.selectedScale, "selectedScale"),
   displayAmount: createStore(settings.displayAmount, "displayAmount"),
   nextNoteTimer: createStore(settings.nextNoteTimer, "nextNoteTimer"),
@@ -23,6 +24,7 @@ export const stores: { [key: string]: Writable<any> } = {
 };
 
 export const {
+  gamemode,
   selectedScale,
   displayAmount,
   nextNoteTimer,

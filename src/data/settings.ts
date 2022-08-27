@@ -14,17 +14,23 @@ interface inputNumber {
 
 export type setting = select | inputNumber;
 
+export const gamemodes = ["streak", "practice"];
 export const scaleNames = Object.keys(scales);
 export const intervalDisplayModes = ["full", "short", "abbreviated"];
 export const tritoneDisplayModes = ["aug4", "dim5", "both", "tritone"];
 
 const settings: {
+  gamemode: select;
   selectedScale: select;
   displayAmount: inputNumber;
   nextNoteTimer: inputNumber;
   intervalDisplayMode: select;
   tritoneDisplayMode: select;
 } = {
+  gamemode: {
+    value: gamemodes[0],
+    list: gamemodes,
+  },
   selectedScale: {
     value: scaleNames[0],
     list: scaleNames,
@@ -54,6 +60,7 @@ const settings: {
 export default settings;
 
 export const {
+  gamemode,
   selectedScale,
   displayAmount,
   nextNoteTimer,
