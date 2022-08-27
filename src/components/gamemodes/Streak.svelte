@@ -45,7 +45,6 @@
     $displayAmount;
 
     timerActive = false;
-    noteGenerator.reset();
   }
 
   function pullNote() {

@@ -1,5 +1,6 @@
 <script lang="ts">
   import svg_config from "@/assets/config.svg";
+  import type { SvelteComponent } from "svelte";
   import Sidebar from "@/components/Sidebar.svelte";
   import Streak from "@/components/gamemodes/Streak.svelte";
   import Practice from "./components/gamemodes/Practice.svelte";
@@ -9,7 +10,6 @@
     selectedScale,
     displayAmount,
   } from "@/stores/settingsStore";
-  import type { SvelteComponent } from "svelte";
 
   const gamemodeComponents: { [key: string]: typeof SvelteComponent } = {
     streak: Streak,
