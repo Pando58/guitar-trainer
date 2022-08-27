@@ -88,8 +88,8 @@
 
         return `font-size: ${size}rem`;
       })()}
-      in:receive={{ key: "in" }}
-      out:send={{ key: "out" }}
+      in:receive|local={{ key: "in" }}
+      out:send|local={{ key: "out" }}
       animate:flip={{
         duration: transitionDuration.duration,
         easing: cubicOut,
