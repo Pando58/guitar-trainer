@@ -84,15 +84,18 @@
   <div class="group">
     <div class="setting">
       <span>{getEntry((e) => e.settings.rootNote)}</span>
-      <InputNumber
-        value={$rootNote}
-        min={settings.rootNote.min}
-        max={settings.rootNote.max}
-        step={settings.rootNote.step}
-        name={"rootNote"}
-        on:updateInput={updateInput}
-        class_="w-20"
-      />
+      <div class="subsetting">
+        <InputNumber
+          value={$rootNote}
+          min={settings.rootNote.min}
+          max={settings.rootNote.max}
+          step={settings.rootNote.step}
+          name={"rootNote"}
+          on:updateInput={updateInput}
+          class_="w-20"
+        />
+        <span>Hz</span>
+      </div>
     </div>
   </div>
   <span class="title">{getEntry((e) => e.settings.titles.language)}</span>
@@ -133,11 +136,19 @@
     @apply border-t border-black border-opacity-40;
   }
 
-  .setting span {
+  .setting > span {
     @apply text-gray-200 font-medium text-sm lowercase;
   }
 
-  .setting span::first-letter {
+  .setting > span::first-letter {
     @apply uppercase;
+  }
+
+  .subsetting > span {
+    @apply text-xs font-semibold;
+  }
+
+  .subsetting > span:last-child {
+    @apply mr-2;
   }
 </style>
