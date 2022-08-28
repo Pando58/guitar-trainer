@@ -26,6 +26,7 @@ const settings: {
   nextNoteTimer: inputNumber;
   intervalDisplayMode: select;
   tritoneDisplayMode: select;
+  rootNote: inputNumber;
 } = {
   gamemode: {
     value: gamemodes[0],
@@ -54,6 +55,12 @@ const settings: {
   tritoneDisplayMode: {
     value: tritoneDisplayModes[3],
     list: tritoneDisplayModes,
+  },
+  rootNote: {
+    value: 440 * Math.pow(2, -9 / 12), // C4,
+    min: 1,
+    max: 20000,
+    step: 0.1,
   },
 };
 

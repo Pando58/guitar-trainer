@@ -9,6 +9,7 @@
     displayAmount,
     intervalDisplayMode,
     tritoneDisplayMode,
+    rootNote,
   } from "@/stores/settingsStore";
   import settings from "@/data/settings";
 
@@ -76,6 +77,21 @@
         list={settings.tritoneDisplayMode.list}
         bind:selected={$tritoneDisplayMode}
         textTransform="capitalize"
+      />
+    </div>
+  </div>
+  <span class="title">{getEntry((e) => e.settings.titles.noteDetection)}</span>
+  <div class="group">
+    <div class="setting">
+      <span>{getEntry((e) => e.settings.rootNote)}</span>
+      <InputNumber
+        value={$rootNote}
+        min={settings.rootNote.min}
+        max={settings.rootNote.max}
+        step={settings.rootNote.step}
+        name={"rootNote"}
+        on:updateInput={updateInput}
+        class_="w-20"
       />
     </div>
   </div>

@@ -5,6 +5,7 @@
   "settings": {
     "titles": {
       "general": "general",
+      "noteDetection": "note detection",
       "language": "language"
     },
     "scale": {
@@ -45,6 +46,7 @@
         "tt": "tritone"
       }
     },
+    "rootNote": "root",
     "language": {
       "label": "language",
       "options": {

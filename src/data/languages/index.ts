@@ -34,6 +34,7 @@ export interface langStructure {
   settings: {
     titles: {
       general: string;
+      noteDetection: string;
       language: string;
     };
     scale: select;
@@ -41,6 +42,7 @@ export interface langStructure {
     gamemode: select;
     intervalDisplayMode: select;
     tritoneDisplayMode: select;
+    rootNote: string;
     language: select;
   };
   intervals: {
