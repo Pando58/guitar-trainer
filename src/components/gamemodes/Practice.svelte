@@ -4,6 +4,7 @@
   import { noteGenerator } from "@/stores/noteGenerator";
   import { displayAmount } from "@/stores/settingsStore";
   import { counter } from "@/stores/displayCounter";
+  import { pitchSmooth, pitchChanging } from "@/stores/pitchDetection";
   import { getEntry } from "@/utils/lang";
   import IntervalDisplay from "@/components/IntervalDisplay.svelte";
 
@@ -28,6 +29,13 @@
 </script>
 
 <div class="flex-1 flex items-center justify-center flex-wrap gap-x-4 p-1.5">
+  <div
+    class={`w-16 text-center text-xs font-semibold ${
+      $pitchChanging ? "text-gray-200" : "text-gray-400"
+    }`}
+  >
+    {$pitchSmooth === -1 ? "-" : Math.round($pitchSmooth)} Hz
+  </div>
   <div>
     <Button text={getEntry((e) => e.reset)} on:click={btnReset} />
     <Button text={getEntry((e) => e.next)} on:click={btnNext} />
